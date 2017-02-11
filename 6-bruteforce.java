@@ -1,9 +1,12 @@
 public class Solution {
   public String convert(String s, int numRows) {
-    if(numRows == 1 || numRows > s.length()) {
+    if(numRows == 1 || numRows >= s.length()) {
       return s;
     }
     StringBuilder[] strArray = new StringBuilder[numRows];
+    for(int i = 0; i < numRows; i++) {
+      strArray[i] = new StringBuilder("");
+    }
     int j = 0;
     boolean down = true;
     for(int i = 0; i < s.length(); i++) {
@@ -20,10 +23,6 @@ public class Solution {
         j--;
       }
     }
-    String str = "";
-    for(int i = 0; i < numRows; i++) {
-      str += strArray[i];
-    }
-    return str; 
+    return String.join("", strArray); 
   }
 }
