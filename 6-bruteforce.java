@@ -11,7 +11,7 @@ public class Solution {
     boolean down = false;
     for(int i = 0; i < s.length(); i++) {
       strArray[j].append(s.charAt(i));
-      if(j == 0 || j == numRows - 1) {
+      if(j == 0 || j == numRows-1) {
         down = !down;
       }
       j = (down) ? j + 1 : j - 1;
