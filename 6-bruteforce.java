@@ -8,20 +8,13 @@ public class Solution {
       strArray[i] = new StringBuilder("");
     }
     int j = 0;
-    boolean down = true;
+    boolean down = false;
     for(int i = 0; i < s.length(); i++) {
       strArray[j].append(s.charAt(i));
-      if(j == numRows - 1) {
-        down = false;
+      if(j == 0 || j == numRows - 1) {
+        down = !down;
       }
-      if(j == 0) {
-        down = true;
-      }
-      if(down) {
-        j++;
-      } else {
-        j--;
-      }
+      j = (down) ? j + 1 : j - 1;
     }
     return String.join("", strArray); 
   }
