@@ -13,35 +13,5 @@ public class Solution {
       }
     }
     int i = 0, j = 0;
-    for(i = 0; i < s.length(); i++) {
-      if(s.charAt(i) != p.charAt(j) && p.charAt(j) != '.') {
-        if(!map.containsKey(j)) {
-          return false;
-        } 
-        while(j < p.length()) {
-          if(map.containsKey(j)) {
-            if(s.charAt(i) == p.charAt(j)) {
-              break;
-            }
-            j += 2;
-          } else {
-            if(s.charAt(i) != p.charAt(j)) {
-              return false;
-            } 
-            j++;
-            break;
-          }
-        }
-        if(j >= p.length() && i < s.length()) {
-          return false;
-        }
-      } else {
-        j++;
-        if(j == p.length()) {
-          break;
-        }
-      }
-    }
-    return i == s.length();   
   }
 }
