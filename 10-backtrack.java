@@ -13,7 +13,7 @@ public class Solution {
         map.put(i-1, p.charAt(i-1));
       }
     }
-    return layerMatch(s, p, 0, 0);
+    return islayerMatch(s, p, 0, 0);
   }
 
   public boolean islayerMatch(String s, String p, int level, int index) {
