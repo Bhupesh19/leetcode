@@ -27,9 +27,9 @@ public class Solution {
       return islayerMatch(s, p, level+1, index+1);
     }
     if(p.charAt(level) == s.charAt(index) || p.charAt(level) == '.') {
-      return islayerMatch(s, p, level, index+1) || islayerMatch(s, p, level+1, index+1);
+      return islayerMatch(s, p, level, index+1) || islayerMatch(s, p, level+2, index+1);
     } else {
-      return islayerMatch(s, p, level+1, index);
+      return islayerMatch(s, p, level+2, index);
     }   
   }
 }
