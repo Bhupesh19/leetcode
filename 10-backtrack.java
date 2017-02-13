@@ -21,7 +21,15 @@ public class Solution {
       return index == s.length();
     }
     if(index == s.length()) {
-      return level == p.length();
+      if(level != p.length()) {
+        while(level < p.length()) {
+          if(!map.containsKey(level)) {
+            return false;
+          }
+          level += 2;  
+        }
+      }
+      return true; 
     }
     if(!map.containsKey(p.charAt(level))) {
       if(s.charAt(index) != p.charAt(level) && p.charAt(level) != '.') {
@@ -30,11 +38,7 @@ public class Solution {
       return isLayerMatch(s, p, level+1, index+1);
     }
     if(p.charAt(level) == s.charAt(index) || p.charAt(level) == '.') {
-      boolean cond = isLayerMatch(s, p, level, index+1) && isLayerMatch(s, p, level+2, index+1);
-      if(!cond) {
-        return isLayerMatch(s, p, level+2, index);
-      }
-      return cond;
+      return isLayerMatch(s, p, level, index+1) || isLayerMatch(s, p, level+2, index+1) || isLayerMatch(s, p, level+2, index);
     } else {
       return isLayerMatch(s, p, level+2, index);
     }
