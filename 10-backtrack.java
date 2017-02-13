@@ -13,23 +13,30 @@ public class Solution {
         map.put(i-1, p.charAt(i-1));
       }
     }
-    return islayerMatch(s, p, 0, 0);
+    return isLayerMatch(s, p, 0, 0);
   }
 
-  public boolean islayerMatch(String s, String p, int level, int index) {
-    if(level == p.length()+1) {
+  public boolean isLayerMatch(String s, String p, int level, int index) {
+    if(level == p.length()) {
       return index == s.length();
+    }
+    if(index == s.length()) {
+      return level == p.length();
     }
     if(!map.containsKey(p.charAt(level))) {
       if(s.charAt(index) != p.charAt(level) && p.charAt(level) != '.') {
         return false;
       }
-      return islayerMatch(s, p, level+1, index+1);
+      return isLayerMatch(s, p, level+1, index+1);
     }
     if(p.charAt(level) == s.charAt(index) || p.charAt(level) == '.') {
-      return islayerMatch(s, p, level, index+1) || islayerMatch(s, p, level+2, index+1);
+      boolean cond = isLayerMatch(s, p, level, index+1) && isLayerMatch(s, p, level+2, index+1);
+      if(!cond) {
+        return isLayerMatch(s, p, level+2, index);
+      }
+      return cond;
     } else {
-      return islayerMatch(s, p, level+2, index);
-    }   
+      return isLayerMatch(s, p, level+2, index);
+    }
   }
 }
