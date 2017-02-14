@@ -13,10 +13,10 @@ public class Solution {
     }
     for(int i = 1; i < p.length(); i++) {
       if(p.charAt(i) == '*') {
-        if(p.charAt(i-1) == '*') {
+        if(p.charAt(i - 1) == '*') {
           return false;
         } 
-        indexSet.add(i-1);
+        indexSet.add(i - 1);
       }
     }
     return isLayerMatch(s, p, 0, 0);
@@ -39,12 +39,12 @@ public class Solution {
       if(!isCharMatch(s.charAt(index), p.charAt(level))) {
         return false;
       }
-      return isLayerMatch(s, p, level+1, index+1);
+      return isLayerMatch(s, p, level + 1, index + 1);
     }
     if(isCharMatch(s.charAt(index), p.charAt(level))) {
-      return isLayerMatch(s, p, level, index+1) || isLayerMatch(s, p, level+2, index+1) || isLayerMatch(s, p, level+2, index);
+      return isLayerMatch(s, p, level, index + 1) || isLayerMatch(s, p, level + 2, index + 1) || isLayerMatch(s, p, level + 2, index);
     } else {
-      return isLayerMatch(s, p, level+2, index);
+      return isLayerMatch(s, p, level + 2, index);
     }
   }
   

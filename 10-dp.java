@@ -13,7 +13,7 @@ public class Solution {
     }
     for(int i = 1; i < p.length(); i++) {
       if(p.charAt(i) == '*') {
-        if(p.charAt(i-1) == '*') {
+        if(p.charAt(i - 1) == '*') {
           return false;
         } 
         indexSet.add(i-1);
@@ -22,7 +22,6 @@ public class Solution {
     boolean[][] m = new boolean[s.length()][p.length()];
   }
 
-  
   private boolean isCharMatch(char c1, char c2) {
     return c1 == c2 || c2 == '.';
   } 
