@@ -16,9 +16,14 @@ public class Solution {
     }
     for(int i = 1; i <= s.length(); i++) {
       for(int j = 2; j <= p.length(); j++) {
-          
+        if(p.charAt(j-1) != '*') {
+          m[i][j] = m[i-1][j-1] && isCharMatch(s.charAt(i-1), p.charAt(j-1));
+        } else {
+          m[i][j] = m[i][j-2] || m[i][j-1] || ((isCharMatch(s.charAt(i-1), p.charAt(j-2)) && m[i-1][j]));  
+        }  
       }
-    } 
+    }
+    return m[s.length()][p.length()]; 
   }
 
   private boolean isCharMatch(char s, char p) {
