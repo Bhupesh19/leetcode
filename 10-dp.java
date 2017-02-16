@@ -19,7 +19,7 @@ public class Solution {
         if(p.charAt(j-1) != '*') {
           m[i][j] = m[i-1][j-1] && isCharMatch(s.charAt(i-1), p.charAt(j-1));
         } else {
-          m[i][j] = m[i][j-2] || m[i][j-1] || ((isCharMatch(s.charAt(i-1), p.charAt(j-2)) && m[i-1][j]));  
+          m[i][j] = m[i][j-2] || ((isCharMatch(s.charAt(i-1), p.charAt(j-2)) && m[i-1][j]));  
         }  
       }
     }
