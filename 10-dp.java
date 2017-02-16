@@ -1,28 +1,27 @@
-public class Solution {
-  private Set<Integer> indexSet = new HashSet<>();
-  
+public class Solution { 
   public boolean isMatch(String s, String p) {
     if(p == null || s == null) { 
       return false;
     }
-    if (p.length() == 0) {
-      return s.length() == 0;
-    }
-    if (p.charAt(0) == '*') {
-      return false;
-    }
-    for(int i = 1; i < p.length(); i++) {
-      if(p.charAt(i) == '*') {
-        if(p.charAt(i - 1) == '*') {
-          return false;
-        } 
-        indexSet.add(i-1);
+    boolean[][] m = new boolean[s.length()+1][p.length()+1];
+    m[0][0] = true;
+    for(int j = 2; j <= p.length(); j += 2) {
+      if(p.charAt(j-1) != '*') {
+        break;
       }
+      m[0][j] = true;
     }
-    boolean[][] m = new boolean[s.length()][p.length()];
+    if(s.length() > 0 && p.length() > 0) {
+      m[1][1] = isCharMatch(s.charAt(0), p.charAt(0));
+    }
+    for(int i = 1; i <= s.length(); i++) {
+      for(int j = 2; j <= p.length(); j++) {
+          
+      }
+    } 
   }
 
-  private boolean isCharMatch(char c1, char c2) {
-    return c1 == c2 || c2 == '.';
-  } 
+  private boolean isCharMatch(char s, char p) {
+    return s == p || p == '.';
+  }
 }
