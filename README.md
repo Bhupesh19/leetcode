@@ -10,12 +10,6 @@ Q10 solution provided by xiaq:
 [dynamic programming in Python (memo)](https://gist.github.com/xiaq/6f0a03c46748e5b0a2e32fc56fc401eb)
 
 ## Unsolved Questions:
-Q4 
-
-Q16
-
-Q18
-
-Q25
-
-Q29
+###Q001 - Q050
+Q004 Q016 Q018 Q025 Q029
+Q030 Q031 Q032
