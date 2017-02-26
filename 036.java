@@ -9,9 +9,10 @@ public class Solution {
           return false; 
         }
         if(char[j][i] != '.' && !colElems.add(char[j][i])) {
-          return true;
-        }
+          return false;
+        }  
       }
     }
+    return true; 
   }
 }
