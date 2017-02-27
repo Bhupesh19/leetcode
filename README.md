@@ -11,5 +11,7 @@ Q10 solution provided by xiaq:
 
 ## Unsolved Questions:
 ###Q001 - Q050
-Q004 Q016 Q018 Q025 Q029
-Q030 Q031 Q032
+q004 q016 q018 q025 q029
+q030 q031 q032 q034 q037
+q039 q040 q041 q042 q043
+q045 q048
