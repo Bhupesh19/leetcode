@@ -9,11 +9,13 @@ public class Solution {
       board[i] = -1;
     }
     Set<Integer> colUsed = new HashSet<>();
-    nQueens(results, colUsed, board, n, 0); 
+    Set<Integer> firstDiaUsed = new HashSet<>(); 
+    Set<Integer> secondDiaUsed = new HashSet<>();
+    nQueens(results, colUsed, firstDiaUsed, secondDiaUsed, board, n, 0); 
     return results;
   }
 
-  private void nQueens(List<List<String>> results, Set<Integer> colUsed, int[] board, int n, int row) {
+  private void nQueens(List<List<String>> results, Set<Integer> colUsed, Set<Integer> firstDiaUsed, Set<Integer> secondDiaUsed, int[] board, int n, int row) {
     if(row == n) {
       List<String> solution = new ArrayList<>();
       for(int i = 0; i < n; i++) {
@@ -31,12 +33,16 @@ public class Solution {
       return;
     }
     for(int i = 0; i < n; i++) {
-      if(row == 0 || (Math.abs(board[row-1]-i) > 1 && !colUsed.contains(i) && row != i && )) {
+      if(row == 0 || (!colUsed.contains(i) && !firstDiaUsed.contains(i-row) &&  !secondDiaUsed.contains(i+row))) {
         board[row] = i;
         colUsed.add(i);
-        nQueens(results, colUsed, board, n, row+1);
+        firstDiaUsed.add(i-row);
+        secondDiaUsed.add(i+row);
+        nQueens(results, colUsed, firstDiaUsed, secondDiaUsed, board, n, row+1);
         board[row] = -1;
         colUsed.remove(i);
+        firstDiaUsed.remove(i-row);
+        secondDiaUsed.remove(i+row);
       } 
     }  
   }
