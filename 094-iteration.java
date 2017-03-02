@@ -4,7 +4,8 @@ public class Solution {
     List<Integer> results = new ArrayList<>();
     Stack<TreeNode> nodes = new Stack<>();
     TreeNode curr = root;
-    while(curr != null) {
+    while(true) {
+      if(curr == null )
       while(curr.left != null) {
         nodes.push(curr);
         curr = curr.left; 
@@ -14,7 +15,6 @@ public class Solution {
         curr = nodes.pop();
         results.add(curr.val);
         curr = curr.right;
-        results.add(curr.val);
       } else {
         break;
       }
