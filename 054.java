@@ -6,7 +6,7 @@ public class Solution {
     }
     int x = 0, row = matrix.length;
     int y = 0, col = matrix[0].length;
-    while(x < row || y < col) {
+    while(x < row && y < col) {
       int i = x; 
       int j = y;
       for(; j < col && i < row; j++) {
@@ -19,7 +19,10 @@ public class Solution {
       }
       i--;
       j--;
-      for(; j >= y && i >= x; j--) {
+      if(j < y || i <= x) {
+        break;
+      }
+      for(; j >= y && i > x; j--) {
         res.add(matrix[i][j]);
       }
       i--;
