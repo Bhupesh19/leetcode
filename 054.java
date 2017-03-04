@@ -4,36 +4,29 @@ public class Solution {
     if(matrix.length == 0) {
       return res;
     }
-    int x = 0, row = matrix.length;
-    int y = 0, col = matrix[0].length;
-    while(x < row && y < col) {
-      int i = x; 
-      int j = y;
-      for(; j < col && i < row; j++) {
-        res.add(matrix[i][j]);
+    int rowBegin = 0, rowEnd = matrix.length - 1;
+    int colBegin = 0, colEnd = matrix[0].length - 1;
+    while(rowBegin <= rowEnd && colBegin <= colEnd) {
+      for(int j = colBegin; j <= colEnd; j++) {
+        res.add(matrix[rowBegin][j]);
       }
-      i++;
-      j--;
-      for(; i < row && j < col; i++) {
-        res.add(matrix[i][j]);
+      rowBegin++;
+      for(int i = rowBegin; i <= rowEnd; i++) {
+        res.add(matrix[i][colEnd]);
       }
-      i--;
-      j--;
-      if(j < y || i <= x) {
-        break;
+      colEnd--;
+      if(rowBegin <= rowEnd) {
+        for(int j = colEnd; j >= colBegin; j--) {
+          res.add(matrix[rowEnd][j]);
+        }
       }
-      for(; j >= y && i > x; j--) {
-        res.add(matrix[i][j]);
-      }
-      i--;
-      j++;
-      for(; i >= x+1 && j >= y ; i--) {
-        res.add(matrix[i][j]);
-      }
-      row--;
-      col--;
-      x++;
-      y++;
+      rowEnd--;
+      if(colBegin <= colEnd) { 
+        for(int i = rowEnd; i >= rowBegin; i--) {
+          res.add(matrix[i][colBegin]);
+        }
+      } 
+      colBegin++;
     }
     return res;
   }
