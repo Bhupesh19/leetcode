@@ -7,17 +7,73 @@ public class Solution {
       return res;
     }
     Set<Integer> nums = new HashSet<>();
-    generate(new TreeNode(0), nums, 0, n);
+    generate(null, nums, 0, n);
     return res;
   }
   
   private void generate(TreeNode node, Set<Integer> nums, int level, int n) {
     if(level == n) {
-      res.add(node);
+      TreeNode root = node.clone();
+      res.add(root);
       return;
     }
     for(int i = 1; i <= n; i++) {
-      
+      if(!nums.contains(i)) {
+        node = insertNode(node, i);
+        nums.add(i);
+        generate(node, nums, level+1, n);
+        node = removeNode(node, i);
+        nums.remove(i); 
+      }
     }
-  } 
+  }
+ 
+  private TreeNode insertNode(TreeNode root, int value) {
+    TreeNode node = new TreeNode(value);
+    if(root == null) {
+      return node;
+    }
+    TreeNode q = root;
+    TreeNode p = null;
+    while(q != null) {
+      if(value > q.val) {
+        p = q;
+        q = q.right;
+      } else {
+        p = q;
+        q = q.left;
+      } 
+    }
+    if(value > p.val) {
+      p.right = node; 
+    } else {
+      p.left = node;
+    }
+    return root;
+  }
+
+  private TreeNode removeNode(TreeNode root, int value) {
+    if(root.val == value) {
+      return null;
+    }
+    TreeNode q = root;
+    TreeNode p = null;
+    while(q != null) {
+      if(value > q.val) {
+        p = q;
+        q = q.right;
+      } else if(value < q.val) {
+        p = q;
+        q = q.left;
+      } else {
+        if(p.left == q) {
+          p.left = null;
+        } else {
+          p.right = null;
+        }
+        break; 
+      }
+    }
+    return root;  
+  }   
 }
