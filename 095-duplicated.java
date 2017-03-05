@@ -13,7 +13,7 @@ public class Solution {
   
   private void generate(TreeNode node, Set<Integer> nums, int level, int n) {
     if(level == n) {
-      TreeNode root = node.clone();
+      TreeNode root = copyTree(node);
       res.add(root);
       return;
     }
@@ -75,5 +75,15 @@ public class Solution {
       }
     }
     return root;  
-  }   
+  }
+
+  private TreeNode copyTree(TreeNode root) {
+    if (root == null) {
+      return null;
+    }
+    TreeNode copied = new TreeNode(root.val);
+    copied.left = copyTree(root.left);
+    copied.right = copyTree(root.right);
+    return copied;
+  } 
 }
