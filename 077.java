@@ -10,7 +10,7 @@ public class Solution {
 
   private void combineKnumbers(List<List<Integer>> res, List<Integer> comb, int level, int n, int k) {
     if(level == k) {
-      res.add(comb);
+      res.add(new ArrayList<Integer>(comb));
       return;
     }
     int last = 0;
