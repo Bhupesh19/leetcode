@@ -14,17 +14,20 @@ public class Solution {
       while(i <= end && nums[i] != 0) {
         i++;
       }
-      if(i < end) {
+      if(i <= end) {
         nums[i] = nums[start];
         nums[start] = 0;
         start++;
       }
-      if(j > start) {
+      while(j >= start && nums[j] != 2) {
+        j--;
+      }
+      if(j >= start) {
         nums[j] = nums[end];
         nums[end] = 2;
         end--;
       }
-      if(i >= end && j <= start) {
+      if(i > end && j < start) {
         break;
       }  
     }
