@@ -22,9 +22,11 @@ public class Solution {
           min = end - begin;
           head = begin;
         }
+        if(map.containsKey(s.charAt(begin)) && map.get(s.charAt(begin)) == 0) {
+          counter++;
+        }
         if(map.containsKey(s.charAt(begin))) {
           map.put(s.charAt(begin), map.get(s.charAt(begin)) + 1);
-          counter++; 
         }
         begin++;
       }
