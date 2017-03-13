@@ -13,8 +13,10 @@ public class Solution {
     int counter = t.length();
     while(end < s.length()) {
       if(map.containsKey(s.charAt(end)) && map.get(s.charAt(end)) > 0) {
-        map.put(s.charAt(end), map.get(s.charAt(end)) - 1);
         counter--;
+      } 
+      if(map.containsKey(s.charAt(end))) {
+        map.put(s.charAt(end), map.get(s.charAt(end)) - 1);
       }
       end++;
       while(counter == 0) {
