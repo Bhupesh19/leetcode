@@ -1,5 +1,5 @@
 # leetcode
-This repo has all my solutions in Java to leetcode algorithm problems, entailing implementations and usage of data structures (hash table, stack, tree etc.), classic algorithm design approaches (dynamic programming, recursion etc.). (Baaaaaaaar, Beeeeaaaar, Beeeeeeer)
+This repo has all my solutions in Java to leetcode algorithm problems, entailing implementations and usage of data structures (hash table, stack, tree etc.), classic algorithm design approaches (dynamic programming, recursion etc.). (Baaaaaaaar, Beeeeaaaar)
 
 Keep working on Hackerrank problems. No time for updates.
 
