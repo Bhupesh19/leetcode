@@ -4,10 +4,8 @@ public class Solution {
     newHead.next = head;
     ListNode p = newHead;
     ListNode q = head;
-    while(q != null && q.val != x) {
-      if(p.next.val < x) {
-        p = p.next;
-      }
+    while(q != null && q.val < x) {
+      p = p.next;
       q = q.next;
     }
     while(q != null && q.next != null) {
