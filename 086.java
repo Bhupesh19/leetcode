@@ -14,7 +14,8 @@ public class Solution {
         ListNode temp2 = p.next;
         p.next = q.next;
         p.next.next = temp2;
-        q.next = temp1;   
+        q.next = temp1;
+        p = p.next;
       } else {
         q = q.next;
       }
