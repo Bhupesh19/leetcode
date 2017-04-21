@@ -6,18 +6,18 @@ public class Solution {
   }
 
   private TreeNode build(int[] preorder, int i, int j, int[] inorder, int m, int n) {
-    if(i > j) {
+    if(i >= preorder.length ||  m > n) {
       return null;
     }
     TreeNode root = new TreeNode(preorder[i]);
-    int leftLast = 0;
-    for(int in = m; in <= n; in++) {
-      if(inorder[in] == root.val) {
-        leftLast = in - 1;
+    int numLeft = 0;
+    for(int k = m; k <= n; k++) {
+      if(preorder[i] == inorder[k]) {
+        numLeft = k - m;
       }
     }
-    root.left = build(preorder, i+1, leftLast-m+i+2, inorder, m, leftLast);
-    root.right = build(preorder, leftLast-m+i+3, j, inorder, leftLast+1, n);
+    root.left = build(preorder, i + 1, i + numLeft, inorder, m, m + numLeft - 1);
+    root.right = build(preorder, i + numLeft + 1, j, inorder, m + numLeft + 1, n);
     return root; 
   }
 }
