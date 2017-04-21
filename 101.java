@@ -4,11 +4,8 @@ public class Solution {
   }
   
   private boolean isSymmetricTrees(TreeNode first, TreeNode second) {
-    if(first == null && second == null) {
-      return true;
-    }
     if(first == null || second == null) {
-      return false;
+      return first == second;
     }
     return first.val == second.val && isSymmetricTrees(first.right, second.left) && isSymmetricTrees(first.left, second.right);
   }
