@@ -10,7 +10,7 @@ public class Solution {
       extendPalindrome(s, i, i);
       extendPalindrome(s, i, i + 1);
     }
-    return s.substring(begin, begin + maxLen); 
+    return s.substring(begin, begin + maxLen);
   }
   
   private void extendPalindrome(String s, int left, int right) {
