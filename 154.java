@@ -9,8 +9,13 @@ public class Solution {
       if(nums[middle - 1] > nums[middle]) {
         return nums[middle];
       }
-      // minimum in the right half of the array is easier
-      if(nums[high] < nums[middle]) {
+      if(nums[high] == nums[middle]) {
+        while(high > middle && nums[high] == nums[high - 1]) {
+          high--;
+        }
+        high--;
+      }
+      else if(nums[high] < nums[middle]) {
         low = middle + 1;
       } else {
         high = middle - 1;
