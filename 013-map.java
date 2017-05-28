@@ -3,13 +3,14 @@ public class Solution {
     int num = 0;
     Map<Character, Integer> map = new HashMap<>();
     initMap(map);
-    for(int i = 0; i < s.length(); i++) {
-      if(i == s.length() - 1 || map.get(s.charAt(i)) >= map.get(s.charAt(i + 1))) {
+    for(int i = 0; i < s.length()-1; i++) {
+      if(map.get(s.charAt(i)) >= map.get(s.charAt(i+1))) {
         num += map.get(s.charAt(i));
       } else {
         num -= map.get(s.charAt(i));
       }
     }
+    num += map.get(s.charAt(s.length()-1));
     return num;
   }
 
