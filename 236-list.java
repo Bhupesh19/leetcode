@@ -4,12 +4,12 @@ public class Solution {
     List<TreeNode> qt = new ArrayList<>();
     findPath(root, p, pt);
     findPath(root, q, qt);
-    int i = 0;
-    while(i < pt.size() && i < qt.size()) {
-      if(i + 1 == pt.size() || i + 1 == pt.size() || pt.get(i + 1) != qt.get(i + 1)) {
-        return pt.get(i);
+    for(int i = pt.size() - 1; i >= 0; i--) {
+      for(int j = qt.size() - 1; j >= 0; j--) {
+        if(pt.get(i) == qt.get(j)) {
+          return pt.get(i);
+        }
       }
-      i++;
     }
     return null;
   }
