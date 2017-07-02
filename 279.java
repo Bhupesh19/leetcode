@@ -1,5 +1,4 @@
 public class Solution {
-
   public int numSquares(int n) {
     int[] nums = new int[n + 1];
     for(int i = 1; i * i <= n; i++) {
