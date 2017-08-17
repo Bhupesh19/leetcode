@@ -1,33 +1,24 @@
 public class Solution {
   public boolean isPossible(int[] nums) {
-    if(nums.length < 3) return false;
-    List<List<Integer>> res = new ArrayList<>();
-    for(int i = 0; i < nums.length; i++) {
-      int index = -1;
-      for(int j = 0; j < res.size(); j++) {
-        List<Integer> li = res.get(j);
-        if(li.get(li.size() - 1) == nums[i]) {
-          continue;
-        }
-        if(li.size() == 0 || li.size() < 3 && nums[i] - li.get(li.size() - 1) == 1) {
-          index = j;
-          break; 
-        }
-        if(nums[i] - li.get(li.size() - 1) == 1) {
-          index = j;
-        }
-      }
-      if(index == -1) {
-        res.add(new ArrayList<Integer>());
-        res.get(res.size() - 1).add(nums[i]);
-      } else {
-        res.get(index).add(nums[i]);
-      }
+    Map<Integer, Integer> freq = new HashMap<>();
+    Map<Integer, Integer> appendFreq = new HashMap<>();
+    for(int num : nums) {
+      freq.put(num, freq.getOrDefault(num, 0) + 1);
     }
-    for(List<Integer> li : res) {
-      if(li.size() < 3) {
+    for(int num : nums) {
+      if(freq.get(num) == 0) { 
+        continue;
+      } else if(appendFreq.getOrDefault(num, 0) > 0) {
+        appendFreq.put(num + 1, appendFreq.getOrDefault(num + 1, 0) + 1);
+        appendFreq.put(num, appendFreq.get(num) - 1);
+      } else if(freq.getOrDefault(num + 1, 0) > 0 && freq.getOrDefault(num + 2, 0) > 0) {
+        freq.put(num + 1, freq.get(num + 1) - 1);
+        freq.put(num + 2, freq.get(num + 2) - 1);
+        appendFreq.put(num + 3, appendFreq.getOrDefault(num + 3, 0) + 1);
+      } else {
         return false;
       }
+      freq.put(num, freq.get(num) - 1);
     }
     return true;
   }
