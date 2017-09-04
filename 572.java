@@ -7,6 +7,6 @@ public class Solution {
   private boolean isSame(TreeNode s, TreeNode t) {
     if(t == null && s == null) return true;
     if(t == null || s == null) return false;
-    return t.val == s.val && isSame(s.left, t) && isSame(s.right, t);
+    return t.val == s.val && isSame(s.left, t.left) && isSame(s.right, t.right);
   }
 }
