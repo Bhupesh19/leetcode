@@ -1,31 +1,46 @@
-public class Solution {
-    public int findPaths(int m, int n, int N, int i, int j) {
-        if(N == 0) return 0;
-        int[][][] p = new int[m][n][N];
-        p[i][j][0] = 1;
-        for(int r = 1; r < N; r++) {
-            for(int l = 0; l < n; l++) {
-                for(int k = 0; k < m; k++) {
-                    if(k - 1 >= 0) p[k][l][r] += p[k - 1][l][r - 1];
-                    if(k + 1 < m) p[k][l][r] += p[k + 1][l][r - 1];
-                    if(l - 1 >= 0) p[k][l][r] += p[k][l - 1][r - 1];
-                    if(l + 1 < n) p[k][l][r] += p[k][l + 1][r - 1];
-                    p[k][l][r] %= 1000000007;
-                }
-            }
-        }
-        int sum = 0;
-        for(int r = 0; r < N; r++) {
-            for(int k = 0; k < m; k++) {
-                sum += p[k][0][r];
-                sum += p[k][n - 1][r];
-            }
-            for(int l = 0; l < n; l++) {
-                sum += p[0][l][r];
-                sum += p[m - 1][l][r];
-            }
-            sum %= 1000000007;
-        }
-        return sum;
+class Solution {
+  public int findPaths(int m, int n, int N, int i, int j) {
+    if (N == 0) {
+      return 0;
     }
+    long[][][] paths = new long[m][n][N];
+    int large = 1000000007;
+    long counts = 0;
+    paths[i][j][0] = 1;
+    if (i == 0) counts += 1;   
+    if (j == 0) counts += 1;
+    if (i == m - 1) counts += 1;
+    if (j == n - 1) counts += 1;
+    for (int k = 1; k < N; k++) {
+      for (int p = 0; p < m; p++) {
+        for (int q = 0; q < n; q++) {
+          if (p - 1 >= 0) {
+            paths[p][q][k] = (paths[p - 1][q][k - 1] + paths[p][q][k]) % large;
+          }
+          if (q - 1 >= 0) {
+            paths[p][q][k] = (paths[p][q - 1][k - 1] + paths[p][q][k]) % large;
+          }
+          if (p + 1 < m) {
+            paths[p][q][k] = (paths[p + 1][q][k - 1] + paths[p][q][k]) % large;
+          }
+          if (q + 1 < n) {
+            paths[p][q][k] = (paths[p][q + 1][k - 1] + paths[p][q][k]) % large;
+          }
+          if (p == 0) {
+            counts = (counts + paths[p][q][k]) % large;
+          }
+          if (q == 0) {
+            counts = (counts + paths[p][q][k]) % large;
+          }
+          if (p == m - 1) {
+            counts = (counts + paths[p][q][k]) % large;
+          }
+          if (q == n - 1) {
+            counts = (counts + paths[p][q][k]) % large;
+          }
+        }
+      }
+    }
+    return (int) counts;
+  }
 }
