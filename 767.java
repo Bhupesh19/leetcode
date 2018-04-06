@@ -8,6 +8,7 @@ class Solution {
     // put all map entries into a max heap where the priority is decided by freq
     // every time poll the priority queue, append the char with the hightest freq, reduce the freq and add it back. if there are multiple highest freq numbers, append them by turns. If the hightest freq numbers is still the same one as previous, insert the second higheset freq number first
         // notice: aaabb, <a, 3> <b, 2>, the process will go as (1) string: "a" heap: <a, 2>, <b, 2>. We can not insert a again so every time we need to check the previous char; aaaabbcc, (1) string: "a" heap: <a, 3> <b, 2> <c, 2>. in this case we have to insert the second hightest freq number; (2) string: "ab", heap <a, 3> <b, 1> <c, 2>; (3) string: "aba" <a, 2> <b, 1> <c, 2>...
+    // n*log m, m < n
     Map<Character, Integer> occurs = new HashMap();
     for (char c : S.toCharArray()) {
       occurs.put(c, occurs.getOrDefault(c, 0) + 1);
