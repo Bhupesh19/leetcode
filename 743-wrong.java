@@ -2,7 +2,6 @@ class Solution {
   public int networkDelayTime(int[][] times, int N, int K) {
     int[][] s2tTimes = new int[N + 1][N + 1];
     int[] k2Times = new int[N + 1];
-    // use a min heap to keep track of the adjacent nodes and update k2Times array
     PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
         
     // initialize the initial time as infinite
