@@ -23,8 +23,7 @@ class Solution {
       int price = route[1];
       int stops = route[2];
       if (source == dst) {
-        prices[dst] = Math.min(prices[dst], price);
-        continue;
+        return price;
       }
       if (!routes.containsKey(source)) {
         continue;
@@ -39,6 +38,6 @@ class Solution {
         minHeap.offer(new int[]{target, prices[target], stops + 1});
       }
     }
-    return (prices[dst] == Integer.MAX_VALUE) ? -1 : prices[dst];
+    return -1;
   }
 }
