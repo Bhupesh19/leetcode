@@ -22,7 +22,7 @@ class Solution {
       int source = route[0];
       int price = route[1];
       int stops = route[2];
-      if (stops > K || !routes.containsKey(source)) {
+      if (!routes.containsKey(source)) {
         continue;
       }
       if (source == dst) {
@@ -32,7 +32,7 @@ class Solution {
       for (Map.Entry<Integer, Integer> entry : routes.get(source).entrySet()) {
         int target = entry.getKey();
         int p = entry.getValue();
-        if (stops + 1 > K || prices[target] < price + p || stops + 1 == K && target != dst) {
+        if (prices[target] < price + p || stops + 1 == K && target != dst) {
           continue;
         }
         prices[target] = price + p;
