@@ -27,26 +27,19 @@ class Solution {
       validNums.add(t);
     }
     for (int i = l; i < r; i++) {
-      String temp = S.substring(l, i + 1) + "." + S.substring(i + 1, r + 1);
       String integ = S.substring(l, i + 1);
       String decimal = S.substring(i + 1, r + 1);
       if (hasNoLeadingZeroes(integ) && hasNoTrailingZeroes(decimal)) {
-        validNums.add(temp);
+        validNums.add(integ + "." + decimal);
       }
     }
   }
     
   private boolean hasNoLeadingZeroes(String t) {
-    if (t.startsWith("0") && t.length() != 1) {
-      return false;
-    }
-    return true;
+    return !t.startsWith("0") || t.length() == 1;
   }
     
   private boolean hasNoTrailingZeroes(String t) {
-    if (t.endsWith("0")) {
-      return false;
-    }
-    return true;
+    return !t.endsWith("0");
   }
 }
