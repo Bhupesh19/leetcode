@@ -1,9 +1,9 @@
 class Solution {
   public String validIPAddress(String IP) {
-    if (IP.indexOf(".") != -1 && isIPv4(IP)) {
+    if (isIPv4(IP)) {
       return "IPv4";
     }
-    if (IP.indexOf(":") != -1 && isIPv6(IP)) {
+    if (isIPv6(IP)) {
       return "IPv6";
     }
     return "Neither";
