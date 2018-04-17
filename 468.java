@@ -10,28 +10,22 @@ class Solution {
   }
     
   private boolean isIPv4(String ip) {
-    int i = 0;
-    int count = 0;
-    while (i < ip.length()) {
-      int j = i;
-      while (j < ip.length() && ip.charAt(j) != '.') {
-        char c = Character.toLowerCase(ip.charAt(j));
+    String[] parts = ip.split("\\.");
+    if (parts.length != 4 || ip.charAt(ip.length() - 1) == '.') {
+      return false;
+    }
+    for (String part : parts) {
+      for (int i = 0; i < part.length(); i++) {
+        char c = Character.toLowerCase(part.charAt(i));
         if (c > '9' || c < '0') {
           return false;
         }
-        j++;
       }
-      if (j == ip.length() - 1 && ip.charAt(j) == '.') {
+      if (part.length() == 0 || part.length() > 3 || hasLeadingZeroes(part) || Integer.valueOf(part) > 255) {
         return false;
       }
-      String part = ip.substring(i, j);
-      if (part.equals("") || hasLeadingZeroes(part) || part.length() > 3 || Integer.parseInt(part) > 255) {
-        return false;
-      }
-      count++;
-      i = j + 1;
     }
-    return count == 4;
+    return true;
   }
     
   private boolean hasLeadingZeroes(String s) {
@@ -39,28 +33,22 @@ class Solution {
   }
     
   private boolean isIPv6(String ip) {
-    int i = 0;
-    int count = 0;
-    while (i < ip.length()) {
-      int j = i;
-      while (j < ip.length() && ip.charAt(j) != ':') {
-        char c = Character.toLowerCase(ip.charAt(j));
-        if ((c > '9' || c < '0') && (c < 'a' || c > 'f'))  {
+    String[] parts = ip.split(":");
+    if (parts.length != 8 || ip.charAt(ip.length() - 1) == ':') {
+      return false;
+    }
+    for (String part : parts) {
+      for (int i = 0; i < part.length(); i++) {
+        char c = Character.toLowerCase(part.charAt(i));
+        if ((c > '9' || c < '0') && (c < 'a' || c > 'f')) {
           return false;
         }
-        j++;
       }
-      if (j == ip.length() - 1 && ip.charAt(j) == ':') {
+      if (part.length() == 0 || part.length() > 4 || hasExtraZeroes(part)) {
         return false;
       }
-      String part = ip.substring(i, j);
-      if (part.equals("") || hasExtraZeroes(part) || part.length() > 4) {
-        return false;
-      }
-      count++;
-      i = j + 1;
     }
-    return count == 8;
+    return true;
   }
     
   private boolean hasExtraZeroes(String s) {
