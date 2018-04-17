@@ -10,18 +10,20 @@ class Solution {
   }
     
   private boolean isIPv4(String ip) {
-    String[] parts = ip.split("\\.");
-    if (parts.length != 4 || ip.charAt(ip.length() - 1) == '.') {
+    String[] parts = ip.split("\\.", -1);
+    if (parts.length != 4) {
       return false;
     }
     for (String part : parts) {
+      int number = 0;
       for (int i = 0; i < part.length(); i++) {
-        char c = Character.toLowerCase(part.charAt(i));
+        char c = part.charAt(i);
         if (c > '9' || c < '0') {
           return false;
         }
+        number = number * 10 + c - '0';
       }
-      if (part.length() == 0 || part.length() > 3 || hasLeadingZeroes(part) || Integer.valueOf(part) > 255) {
+      if (part.length() == 0 || part.length() > 3 || hasLeadingZeroes(part) || number > 255) {
         return false;
       }
     }
@@ -33,8 +35,8 @@ class Solution {
   }
     
   private boolean isIPv6(String ip) {
-    String[] parts = ip.split(":");
-    if (parts.length != 8 || ip.charAt(ip.length() - 1) == ':') {
+    String[] parts = ip.split(":", -1);
+    if (parts.length != 8) {
       return false;
     }
     for (String part : parts) {
@@ -44,14 +46,11 @@ class Solution {
           return false;
         }
       }
-      if (part.length() == 0 || part.length() > 4 || hasExtraZeroes(part)) {
+      if (part.length() == 0 || part.length() > 4) {
         return false;
       }
     }
     return true;
   }
-    
-  private boolean hasExtraZeroes(String s) {
-    return s.startsWith("0") && s.length() > 4;
-  }
 }
+
