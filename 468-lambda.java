@@ -39,10 +39,9 @@ class Solution {
     if (parts.length != 8) {
       return false;
     }
-    boolean b1 = false;
     for (String part : parts) {
+      boolean b1 = false;
       b1 = part.chars()
-              .mapToObj(c -> (char)c)
               .map(c -> Character.toLowerCase(c))
               .anyMatch(c -> (c > '9' || c < '0') && (c < 'a' || c > 'f'));
       if (b1) {
