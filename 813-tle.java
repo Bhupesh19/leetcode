@@ -12,14 +12,14 @@ class Solution {
   }
     
   private void computeAverages(int[] A, int K, int lastIndex, int nth, double sum, double[] sums) {
-    if (nth == K && lastIndex == A.length - 1) {
+    if (nth == K + 1 && lastIndex == A.length - 1) {
       max = Math.max(max, sum);
       return;
     }
     if (lastIndex == A.length - 1) {
       return;
     }
-    if (nth == K) {
+    if (nth == K + 1) {
       return;
     }
     for (int i = lastIndex + 1; i < A.length; i++) {
